@@ -1,17 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: deploy-test01
+  name: web-service
 spec:
-  replicas: 3
   selector:
-    matchLabels:
-      app: web-deploy
-  template:
-    metadata:
-      labels:
-        app: web-deploy
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.24
+    app: web-deploy
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 80
